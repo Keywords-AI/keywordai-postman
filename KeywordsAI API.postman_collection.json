@@ -1,0 +1,982 @@
+{
+	"info": {
+		"_postman_id": "4df126b3-6728-4234-b68a-922ed03360af",
+		"name": "KeywordsAI API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39675090",
+		"_collection_link": "https://keywordsai.postman.co/workspace/KeywordsAI~d4887dd3-0bb7-4941-8a55-3dd7e8caac9e/collection/39675090-4df126b3-6728-4234-b68a-922ed03360af?action=share&source=collection_link&creator=39675090"
+	},
+	"item": [
+		{
+			"name": "Integration",
+			"item": [
+				{
+					"name": "Async Logging",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"gpt-4\",\n    \"prompt_messages\": [\n        {\n          \"role\": \"user\",\n          \"content\": \"Hi\"\n        },\n        {\n          \"role\": \"assistant\",\n          \"content\": null,\n          \"tool_calls\": [\n            {\n              \"id\": \"xxxx\",\n              \"type\": \"function\",\n              \"function\": {\n                \"name\": \"get_current_weather\",\n                \"arguments\": \"{\\n\\\"location\\\": \\\"Boston, MA\\\"\\n}\" \n              }\n            }\n          ]\n        }\n    ],\n    \"completion_message\": {\n        \"role\": \"assistant\",\n        \"content\": \"Hi, how can I assist you today?\"\n    },\n    \"tool_choice\": {\n        \"type\": \"function\",\n        \"function\": {\n            \"name\": \"get_current_weather\"\n        }\n    },\n    \"tools\":[\n      {\n        \"type\": \"function\",\n        \"function\": {\n          \"name\": \"get_current_weather\",\n          \"description\": \"Get the current weather in a given location\",\n          \"parameters\": {\n            \"type\": \"object\",\n            \"properties\": {\n              \"location\": {\n                \"type\": \"string\",\n                \"description\": \"The city and state, e.g. San Francisco, CA\"\n              },\n              \"unit\": {\"type\": \"string\", \"enum\": [\"celsius\", \"fahrenheit\"]}\n            },\n            \"required\": [\"location\"]\n          }\n        }\n      }\n    ],\n    \"prompt_tokens\": 8,\n    \"completion_tokens\": 16,\n    \"cost\": 0.00042,\n    \"generation_time\": 0.0,\n    \"timestamp\": \"2024-12-15T08:30:37.721313Z\",\n    \"ttft\": 0.0,\n    \"metadata\": {},\n    \"stream\": false,\n    \"status_code\": 200,\n    \"warnings\": \"\",\n    \"error_message\": \"\",\n    \"customer_params\": {\n        \"customer_identifier\": \"customer_123\",\n        \"name\": \"Hendrix Liu\", \n        \"email\": \"hendrix@keywordsai.co\" \n    },\n    \"type\":\"text\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/request-logs/create/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"request-logs",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Proxy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"gpt-3.5-turbo\",\n    \"messages\": [\n        {\"role\": \"user\", \"content\": \"Tell me a long story\"}\n    ],\n    \"stream\": true,\n    \"extra_body\": {\n        \"customer_identifier\": \"customer_11\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/chat/completions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"chat",
+								"completions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Batch logging",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"logs\": [\n        {\n            \"cost\": 0,\n            \"prompt_messages\": [\n                {\n                    \"role\": \"user\",\n                    \"content\": [\n                        {\"type\": \"text\", \"text\": \"Sixth message\"},\n                        {\n                            \"type\": \"image_url\",\n                            \"image_url\": {\n                                \"url\": \"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/\"\n                            }\n                        }\n                    ]\n                },\n                {\n                    \"role\": \"assistant\",\n                    \"content\": null,\n                    \"tool_calls\": [\n                        {\n                            \"id\": \"call_p2RIiNv3B8JF8Capaz3vA7kZ\",\n                            \"type\": \"function\",\n                            \"function\": {\n                                \"name\": \"transfer_call\",\n                                \"arguments\": \"{\\\"execution_message\\\":\\\"I'm sorry to hear that. Let me transfer you to a human representative for further assistance.\\\"}\"\n                            }\n                        }\n                    ]\n                }\n            ],\n            \"completion_message\": {\n                \"role\": \"assistant\",\n                \"content\": \"Hi, How can I assist you today?\",\n                \"tool_calls\": null\n            },\n            \"tool_calls\": [\n                {\n                    \"id\": null,\n                    \"function\": {\"arguments\": \"\\\"}\", \"name\": null},\n                    \"type\": \"function\",\n                    \"index\": 0\n                }\n            ],\n            \"tool_choice\": {\n                \"type\": \"function\",\n                \"function\": {\"name\": \"get_current_weather\"}\n            },\n            \"latency\": 10,\n            \"time_to_first_token\": 0.1,\n            \"model\": \"claude-3-5-sonnet-20240620\",\n            \"timestamp\": \"2024-12-15T08:30:37.721313Z\",\n            \"metadata\": {\"key2\": \"1\"},\n            \"stream\": true,\n            \"status_code\": 401,\n            \"warnings\": \"Test log\",\n            \"error_message\": \"\",\n            \"customer_identifier\": \"a_model_customer\",\n            \"keywordsai_params\": {\"customer_identifier\": \"b_model_customer\"}\n        }\n    ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/request-logs/batch/create",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"request-logs",
+								"batch",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Api-Key EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/request-logs/?page=1&sort_by=-id&is_test=false&all_envs=false&fetch_filters=false&page_size=1\n",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"request-logs",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "sort_by",
+									"value": "-id"
+								},
+								{
+									"key": "is_test",
+									"value": "false"
+								},
+								{
+									"key": "all_envs",
+									"value": "false"
+								},
+								{
+									"key": "fetch_filters",
+									"value": "false"
+								},
+								{
+									"key": "page_size",
+									"value": "1\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"logs\": [\n        {   \"unique_id\": \"112233\",\n            \"metadata\": {\n                \"metadata_key\": \"updated_value\"\n            },\n            \"note\": \"updated note\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/request-logs/batch-update/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"request-logs",
+								"batch-update",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prompt",
+			"item": [
+				{
+					"name": "Prompt creation",
+					"item": [
+						{
+							"name": "Prompt",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.globals.set(pm.response.json().id, \"prompt_id\");"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"My Prompt Name\",\n    \"description\": \"Your Prompt Description\"\n    \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prompt version",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"A description of the prompt version\",\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"You are a helpful {{role}}.\"},\n    {\"role\": \"user\", \"content\": \"Hello, how are you?\"}\n  ],\n  \"model\": \"gpt-3.5-turbo\",\n  \"stream\": false,\n  \"temperature\": 0.7,\n  \"max_tokens\": 256,\n  \"top_p\": 1.0,\n  \"frequency_penalty\": 0.0,\n  \"presence_penalty\": 0.0,\n  \"variables\": {},\n  \"fallback_models\": [\"gpt-3.5-turbo-16k\", \"gpt-4\"],\n  \"load_balance_models\": [\n    {\"model\": \"gpt-3.5-turbo\", \"weight\": 0.7},\n    {\"model\": \"gpt-4\", \"weight\": 0.3}\n  ],\n  \"tools\": [\n    {\n      \"type\": \"function\",\n      \"function\": {\n        \"name\": \"get_weather\",\n        \"description\": \"Get the current weather in a given location\",\n        \"parameters\": {\n          \"type\": \"object\",\n          \"properties\": {\n            \"location\": {\n              \"type\": \"string\",\n              \"description\": \"The city and state, e.g. San Francisco, CA\"\n            }\n          },\n          \"required\": [\"location\"]\n        }\n      }\n    }\n  ],\n  \"deploy\": true\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/{{prompt_id}}/versions/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										"{{prompt_id}}",
+										"versions",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Prompt retrieval",
+					"item": [
+						{
+							"name": "Prompt",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prompt version",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Prompt update",
+					"item": [
+						{
+							"name": "Prompt",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Your Prompt Name\",\n    \"description\": \"Your Prompt Description\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/{{prompt_id}}/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										"{{prompt_id}}",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prompt version",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/<prompt_id>/versions/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										"<prompt_id>",
+										"versions",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Prompt deletion",
+					"item": [
+						{
+							"name": "Prompt",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/%3Cprompt_id%3E/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										"%3Cprompt_id%3E",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Prompt version",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "https://api.keywordsai.co/prompts/{{prompt_id}}/versions/",
+									"protocol": "https",
+									"host": [
+										"api",
+										"keywordsai",
+										"co"
+									],
+									"path": [
+										"prompts",
+										"{{prompt_id}}",
+										"versions",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Multimodal integration",
+			"item": [
+				{
+					"name": "Text to speech",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"tts-1\",\n    \"input\": \"Today is a wonderful day to build something people love!\",\n    \"voice\": \"alloy\",\n    \"customer_identifier\": \"customer_11\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/audio/speech",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"audio",
+								"speech"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Speech to text",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "model",
+									"value": "whisper-1",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/alex/Downloads/cat-meow-6226.mp3"
+								},
+								{
+									"key": "customer_identifier",
+									"value": "customer_11",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/audio/transcriptions",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"audio",
+								"transcriptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Embeddings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"model\": \"text-embedding-3-small\",\n    \"input\": \"Your text string goes here\",\n    \"extra_body\": {\n        \"customer_identifier\": \"customer_11\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/embeddings",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"embeddings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "User creation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"period_budget\": 30,\n    \"customer_identifier\": \"some_customer_identifier1\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/users/create/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"users",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User list",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Api-Key EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/users/?page_size=10&summary_type=all&date=2024-03-09%2000:00:00",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "10"
+								},
+								{
+									"key": "summary_type",
+									"value": "all"
+								},
+								{
+									"key": "date",
+									"value": "2024-03-09%2000:00:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.keywordsai.co/api/user/detail/some_customer_identifier1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"user",
+								"detail",
+								"some_customer_identifier1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"period_budget\": 300\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/user/detail/some_customer_identifier",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"user",
+								"detail",
+								"some_customer_identifier"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Evaluations",
+			"item": [
+				{
+					"name": "Evaluations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "EY98ue3x.DgN7Emxj5VCRIoZg1eZiCUOj2wGKcIIs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"evals_to_run\": [\"Conciseness\"], \n    \"evaluation_identifier\":\"test_eval\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.keywordsai.co/api/run-evaluations/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"run-evaluations",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Model",
+			"item": [
+				{
+					"name": "Model list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.keywordsai.co/api/models/public",
+							"protocol": "https",
+							"host": [
+								"api",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"models",
+								"public"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
