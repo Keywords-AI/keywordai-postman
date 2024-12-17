@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "523f57cf-5bf9-46a9-982e-39390a7ba954",
+		"name": "keywords_platform_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29370939",
+		"_collection_link": "https://crimson-moon-966890.postman.co/workspace/Keywords-AI-Team-Workspace~d7a4ac50-1b59-42dc-92ba-4e57ff680e7a/collection/29370939-523f57cf-5bf9-46a9-982e-39390a7ba954?action=share&source=collection_link&creator=29370939"
+	},
+	"item": [
+		{
+			"name": "Log In",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"raymond@keywordsai.co\",\r\n    \"email\":\"raymond@keywordsai.co\",\r\n    \"password\":\"4Y8cvvWA94P@\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.keywordsai.co/auth/jwt/create/",
+					"protocol": "https",
+					"host": [
+						"api",
+						"keywordsai",
+						"co"
+					],
+					"path": [
+						"auth",
+						"jwt",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Request Logs Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEwMzk0OTExLCJpYXQiOjE3MDk3OTAxMTEsImp0aSI6IjA0ZDI1Zjk1NDdhYzQ3YThiYjY4MWMxZTZhMjgwNTNlIiwidXNlcl9pZCI6MzAzfQ._zYan0NEtpe_1zavopRcsbLq2LGFw096YIQE4Au1a9o",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"prompt_messages\": [{\"role\":\"user\", \"content\":\"I am testing logging API here\"}],\r\n\"completion_message\": {\"role\":\"assistant\", \"content\":\"great, LMK how it goes\"}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/request-logs/?page_size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"request-logs",
+						""
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "page_size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Shepherd Generation",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Api-Key IRyk8Nuf.USGGSgHTx7XiiNLsFPDjLxBXBR1TeuwK",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"messages\": [{\"role\": \"user\", \"content\": \"Say 'hi'\"}],\r\n        \"stream\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-test.keywordsai.co/api/generate/",
+					"protocol": "https",
+					"host": [
+						"api-test",
+						"keywordsai",
+						"co"
+					],
+					"path": [
+						"api",
+						"generate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign Up Email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"first_name\": \"Raymond\",\r\n    \"last_name\": \"Huang\",\r\n    \"email\": \"radywriters@gmail.com\",\r\n    \"password\": \"Keywords666\",\r\n    \"organization_name\": \"Keywords AI\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/auth/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Google retrieve access token from state and code",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/o/google-oauth2/?state=bh78ELbi8N1rMgkWQQPxzCBkUULyE2oR&code=4%2F0AfJohXmpPvkB9biLV0vBI7KsfgVOY8kTxEjfX41qBrqc2qa_24xnuwcvYQKnqQQ_jf8Ekg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=none",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"o",
+						"google-oauth2",
+						""
+					],
+					"query": [
+						{
+							"key": "state",
+							"value": "bh78ELbi8N1rMgkWQQPxzCBkUULyE2oR"
+						},
+						{
+							"key": "code",
+							"value": "4%2F0AfJohXmpPvkB9biLV0vBI7KsfgVOY8kTxEjfX41qBrqc2qa_24xnuwcvYQKnqQQ_jf8Ekg"
+						},
+						{
+							"key": "scope",
+							"value": "email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email"
+						},
+						{
+							"key": "authuser",
+							"value": "0"
+						},
+						{
+							"key": "prompt",
+							"value": "none"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dashboard",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA2MDQ4OTAyLCJpYXQiOjE3MDU0NDQxMDIsImp0aSI6IjEyMjAxODU5NTM0OTQ2MzdhZmQ0Yzg2ZDExMjlmYWViIiwidXNlcl9pZCI6MX0.DOxR8yOs_8aJ0k0DtB1ZnzmDUktSo05L1ei8ZOwCVtk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-test.keywordsai.co/api/dashboard?summary_type=monthly",
+					"protocol": "https",
+					"host": [
+						"api-test",
+						"keywordsai",
+						"co"
+					],
+					"path": [
+						"api",
+						"dashboard"
+					],
+					"query": [
+						{
+							"key": "summary_type",
+							"value": "monthly"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Google auth test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/o/google-oauth2/?redirect_uri=http://127.0.0.1:4200",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"o",
+						"google-oauth2",
+						""
+					],
+					"query": [
+						{
+							"key": "redirect_uri",
+							"value": "http://127.0.0.1:4200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CSRF (Checking if Server is Alive)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-test.keywordsai.co/csrf",
+					"protocol": "https",
+					"host": [
+						"api-test",
+						"keywordsai",
+						"co"
+					],
+					"path": [
+						"csrf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Generation",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Api-Key BnTT8vvE.b2dxVXFa4qYgo5jgHcVHn0WKK91Xm8mb",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"Say 'Hi', nothing else\"\r\n        }\r\n    ]\r\n    ,\"fallback_models\": [\r\n        \"gpt-4\"\r\n    ]\r\n    ,\"protection\": true\r\n    ,\"stream\": true\r\n    // ,\"disable_log\":true\r\n    ,\"logprobs\": true\r\n    ,\"metadata\": {\r\n        \"hello\": \"world\"\r\n    }\r\n    ,\"request_breakdown\": true\r\n    ,\"customer_identifier\":\"something\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api-test.keywordsai.co/api/generate/",
+					"protocol": "https",
+					"host": [
+						"api-test",
+						"keywordsai",
+						"co"
+					],
+					"path": [
+						"api",
+						"generate",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Test Generation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Api-Key BnTT8vvE.b2dxVXFa4qYgo5jgHcVHn0WKK91Xm8mb",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"messages\": [\r\n        {\r\n            \"role\": \"system\",\r\n            \"content\": \"\"\r\n        },\r\n        {\r\n            \"role\": \"user\",\r\n            \"content\": \"Say 'Hi', nothing else\"\r\n        }\r\n    ]\r\n    // ,\"fallback_models\": [\r\n    //     \"gpt-4\"\r\n    // ]\r\n    // ,\"protection\": true\r\n    ,\"stream\": true\r\n    // ,\"disable_log\":true\r\n    // ,\"logprobs\": true\r\n    // ,\"metadata\": {\r\n    //     \"hello\": \"world\"\r\n    // }\r\n    ,\"request_breakdown\": true\r\n    // ,\"customer_identifier\":\"something\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api-test.keywordsai.co/api/generate/",
+							"protocol": "https",
+							"host": [
+								"api-test",
+								"keywordsai",
+								"co"
+							],
+							"path": [
+								"api",
+								"generate",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Server",
+							"value": "nginx/1.18.0"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 22 Feb 2024 04:44:43 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/event-stream"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Allow",
+							"value": "POST, OPTIONS"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "DENY"
+						},
+						{
+							"key": "Vary",
+							"value": "origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "same-origin"
+						},
+						{
+							"key": "Cross-Origin-Opener-Policy",
+							"value": "same-origin"
+						}
+					],
+					"cookie": [],
+					"body": "{\"id\": \"f1a2c19d11cc47f09091fbcfa0516999\", \"choices\": [{\"finish_reason\": null, \"index\": 0, \"delta\": {\"function_call\": null, \"tool_calls\": null, \"content\": \"Hi\", \"role\": \"assistant\"}}], \"created\": 1708577083, \"model\": \"mistral-tiny\", \"object\": \"chat.completion.chunk\", \"system_fingerprint\": null, \"usage\": {}}---{\"id\": \"f1a2c19d11cc47f09091fbcfa0516999\", \"choices\": [{\"finish_reason\": null, \"index\": 0, \"delta\": {\"function_call\": null, \"tool_calls\": null, \"content\": \".\"}}], \"created\": 1708577083, \"model\": \"mistral-tiny\", \"object\": \"chat.completion.chunk\", \"system_fingerprint\": null, \"usage\": {}}---{\"id\": \"chatcmpl-65d1466c-c876-4dc1-8479-cf53469c62e4\", \"choices\": [{\"finish_reason\": \"stop\", \"index\": 0, \"delta\": {\"content\": null}}], \"created\": 1708577083, \"model\": \"mistral-tiny\", \"object\": \"chat.completion.chunk\", \"system_fingerprint\": null, \"usage\": {}}---{\"id\": \"sentiment_analysis\", \"choices\": [{\"delta\": {\"content\": null, \"role\": \"assistant\"}, \"finish_reason\": \"stop\", \"sentiment_analysis\": {\"sentiment_score\": -0.00800000037997961, \"sentiment_magnitude\": 0.0820000022649765, \"language\": \"en\"}, \"index\": 0, \"message\": {\"content\": null, \"role\": \"assistant\"}}], \"created\": 1706100589, \"model\": \"extra_parameter\", \"object\": \"chat.completion.chunk\", \"system_fingerprint\": null, \"usage\": {}}---{\"id\": \"request_breakdown\", \"choices\": [{\"delta\": {\"content\": null, \"role\": \"assistant\"}, \"finish_reason\": \"stop\", \"request_breakdown\": {\"prompt_tokens\": 17, \"completion_tokens\": 9, \"cost\": 3.93e-06, \"prompt_messages\": [{\"role\": \"system\", \"content\": \"\"}, {\"role\": \"user\", \"content\": \"Say 'Hi', nothing else\"}], \"completion_message\": {\"role\": \"assistant\", \"content\": \"Hi.\"}, \"model\": \"mistral/mistral-tiny\", \"cached\": false, \"timestamp\": \"2024-02-22T04:44:43.964374+00:00\", \"status_code\": 200, \"stream\": true, \"time_to_first_token\": 0.24392618797719479, \"routing_time\": 0.3179711364209652, \"latency\": 0.6664184350520372, \"scores\": {\"mistral/mistral-tiny\": 9.99998821214544, \"openrouter/mistralai/mistral-tiny\": 9.99998821214544, \"mistral/mistral-medium\": 9.9999831287211, \"openrouter/mistralai/mistral-medium\": 9.9999831287211, \"mistral/mistral-small\": 9.999981145229274, \"openrouter/mistralai/mistral-small\": 9.999981145229274, \"gpt-3.5-turbo\": 9.999966523345362, \"azure/gpt-35-turbo\": 9.999966523345362, \"gpt-3.5-turbo-16k\": 9.999945167686414, \"claude-instant-1\": 9.999898040685983, \"claude-instant-1.2\": 9.999898040685983, \"command\": 9.99982123412315, \"openrouter/nousresearch/nous-hermes-2-vision-7b\": 9.99982123412315, \"command-light\": 9.999805152400286, \"claude-2.1\": 9.999672749566017, \"palm/chat-bison\": 9.999307272482218, \"gemini-pro\": 9.998542382569301, \"gemini/gemini-pro\": 9.998542382569301, \"gemini/gemini-pro-vision\": 9.998542382569301, \"gpt-4-1106-preview\": 9.993284283597102, \"gpt-4-0125-preview\": 9.993284283597102, \"gpt-4-vision-preview\": 9.993284283597102, \"azure/gpt-4-1106-preview\": 9.993284283597102, \"azure/gpt-4-vision-preview\": 9.993284283597102, \"claude-2\": 9.992803312502724, \"gpt-4\": 9.21466907337178, \"azure/gpt-4\": 8.952142698159069}, \"category\": \"Roleplay\", \"metadata\": {}, \"sentiment_analysis\": {\"sentiment_score\": -0.00800000037997961, \"sentiment_magnitude\": 0.0820000022649765, \"language\": \"en\"}, \"full_request\": {\"messages\": [{\"role\": \"system\", \"content\": \"\"}, {\"role\": \"user\", \"content\": \"Say 'Hi', nothing else\"}], \"stream\": true}, \"customer_identifier\": \"\"}, \"index\": 0, \"message\": {\"content\": null, \"role\": \"assistant\"}}], \"created\": 1706100589, \"model\": \"extra_parameter\", \"object\": \"chat.completion.chunk\", \"system_fingerprint\": null, \"usage\": {}}[DONE]"
+				}
+			]
+		},
+		{
+			"name": "http://localhost:8000/api/send-email/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/send-email/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"send-email",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
